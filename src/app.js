@@ -2,8 +2,8 @@ import express from 'express';
 import mustacheExpress from 'mustache-express';
 import bodyParser from 'body-parser';
 import { __dirname } from './dirname.js';
-import playerRouter from './playerRouter.js';
-import { loadDefaultPlayers } from './defaultPlayers.js';
+import offerRouter from './offerRouter.js';
+import { loadDefaultOffers } from './defaultOffers.js';
 
 const app = express();
 
@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.static(__dirname + '/../public'));
 
-app.use('/', playerRouter);
+app.use('/', offerRouter);
 
 app.listen(3000, () => console.log('Listening on port 3000!'));
 
-loadDefaultPlayers();
+loadDefaultOffers();

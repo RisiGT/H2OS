@@ -1,86 +1,50 @@
-let players = new Map();
+let offers = new Map();
 let nextId = 0;
 let freesIdArray = [];
 let freesIdSet = new Set();
 
-export function addPlayer(player) {
-    player.id = freesIdArray.length ? freesIdArray.pop() : nextId++;  // Si hay ids que han quedado libres se usará uno de ellos, sino se creará uno nuevo
-    players.set(player.id, player);
+export function addOffer(offer) {
+    offer.id = freesIdArray.length ? freesIdArray.pop() : nextId++;  // Si hay ids que han quedado libres se usará uno de ellos, sino se creará uno nuevo
+    offers.set(offer.id, offer);
 }
 
-export function editPlayer(oldPlayer, newPlayer){
-    newPlayer.subelements = oldPlayer.subelements;
-    newPlayer.id = oldPlayer.id;
+export function editOffer(oldOffer, newOffer){
+    newOffer.subelements = oldOffer.subelements;
+    newOffer.id = oldOffer.id;
 
-    players.set(newPlayer.id, newPlayer);
+    offers.set(newOffer.id, newOffer);
 }
 
-export function deletePlayer(id) {
+export function deleteOffer(id) {
     if (id >= nextId || freesIdSet.has(id)) throw new Error("Invalid id");
 
-    players.delete(id);
+    offers.delete(id);
 
     freesIdArray.push(id);
     freesIdSet.add(id);
 }
 
-export function getPlayers() {
-    return [...players.values()]; // == Array.from(players.values())
+export function getOffers() {
+    return [...offers.values()]; // == Array.from(offers.values())
 }
 
-export function getPlayer(id) {
-    return players.get(id);
+export function getOffer(id) {
+    return offers.get(id);
 }
 
-function validFormat(url) {
-    const regex = /^(ftp|http|https):\/\/[^ "]+$/;
-    return regex.test(url);
-}
+export function correctValues(offer) {
+    let salary = parseInt(offer.salary);
+    let type = offer.type;
 
-function hasImageExtension(url) {
-    const validExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
-    const extension = url.substring(url.lastIndexOf('.')).toLowerCase();
-    return validExtensions.includes(extension);
-}
-
-export function correctValues(player) {
-    let number = parseInt(player.number);
-    let marketValue = parseInt(player.marketValue);
-
-    console.log(player.birth)
+    console.log(offer.birth)
 
     let correct = false;
 
-    if (player.name == "" || player.number == "" || player.nationality == "" || player.description == "") {
+    if (offer.dir == "" || offer.type == "" || offer.start == "" || offer.description == "") {
         alert("Rellene todos los campos del formulario");
-    } else if (isNaN(number) || !Number.isInteger(number) || number < 0) {
-        alert("El dorsal debe ser un número mayor o igual a 0");
-    } else if (marketValue == 0) {
-        alert("Todos los jugadores valen algo");
-    } /*else if (!validFormat(player.photo) || !hasImageExtension(player.photo)) {
-        alert("No es una URL de imagen válida");  //para cuando cambiemos las imágenes a urls
-    } */else {
-        correct = true;
-    }
-
-    return correct;
-}
-
-export function correctSubvalues(sub) {
-    let start = parseInt(sub.stage.start);
-    let end = parseInt(sub.stage.end);
-
-    let correct = false;
-
-    if (sub.club == "" || start == "" || end == "") {
-        alert("Complete todos los campos del formulario");
-    } else if (isNaN(start) || !Number.isInteger(start) || isNaN(end) || !Number.isInteger(end)) {
-        alert("La etapa en el club deben ser dos años, es decir, dos números enteros");
-    } else if (start > end) {
-        alert("¡Es imposible que haya dejado el club antes de haber entrado!");
-    } /*else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
-        alert("No es una URL de imagen válida");  //para cuando cambiemos las imágenes a urls
-    } */else {
+    } else if ((type == "Media jornada" && salary < 700) || (type == "Jornada completa" && salary < 1200) || (type == "Fines de semana" && salary < 500)) {
+        alert("El salario es muy bajo");
+    } else {
         correct = true;
     }
 
