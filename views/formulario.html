@@ -25,61 +25,45 @@
     </header>
 
     <div class="container">
-        <h2>Nueva Ficha </h2>
+        <h2>Nueva Oferta</h2>
 
         <form role="form" action="crear" method="post">
             <div class="form-group">
-                <label for="name">Nombre del jugador</label>
-                <input type="text" class="form-control" name="name" placeholder="Nombre y apellidos">
+                <label for="dir">Dirección</label>
+                <input type="text" class="form-control" name="dir" placeholder="Móstoles, C/Velázquez 2">
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <textarea type="text" class="form-control " name="description" placeholder="Detalles del jugador"></textarea>
+                <textarea type="text" class="form-control " name="description" placeholder="Detalles relevantes de la oferta"></textarea>
             </div>
 
             <div class="row">
                 <div class="form-group col-md-6 col-sm-12">
-                    <label for="position">Posición</label>
-                    <select class="form-select" name="position">
-                        <option value="" disabled selected hidden>Banquillo</option>
-                        <option value="1">Delantero</option>
-                        <option value="2">Medio</option>
-                        <option value="3">Defensa</option>
-                        <option value="3">Portero</option>
+                    <label for="type">Tipo de jornada</label>
+                    <select class="form-select" name="type">
+                        <option value="Puntual" selected hidden>Puntual</option>
+                        <option value="Media jornada">Media jornada</option>
+                        <option value="Jornada completa">Jornada completa</option>
+                        <option value="Fines de semana">Fines de semana</option>
+                        <option value="Correturnos">Correturnos</option>
                     </select>
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
-                    <label for="jersey-number">Dorsal</label>
-                    <input type="number" class="form-control" name="number" placeholder="0">
-                </div>
-            </div>
-
-            <div class="form-group row">
-                <div class="col-md-6 col-sm-12">
-                    <label for="birthday">Fecha de nacimiento</label>
-                    <input type="date" class="form-control text-uppercase" name="birthday">
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <label for="nationality">Nacionalidad</label>
-                    <input type="text" class="form-control" name="nationality" placeholder="Ej.: Española">
+                    <label for="start">Fecha de inicio</label>
+                    <input type="date" class="form-control text-uppercase" name="start">
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="player-photo">Foto de perfil</label>
-                <input type="file" class="form-control" name="photo">
-            </div>
-
-            <div class="form-group">
-                <label for="price">Valor de mercado</label>
-                <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
-                <output for="price" id="outrange">0</output>€
+                <label for="salary">Salario</label>
+                <input type="range" class="form-range" name="salary" value="1100" min="60" max="5000" step="60" oninput="this.nextElementSibling.value = this.value">
+                <output for="price" id="outrange">1200</output>€
             </div>
 
             <div class="btn-cont">
                 <button type="submit" class="btn"><i class="bi bi-download"></i> Guardar</button>
-                <a href="/" class="btn" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
+                <a href="/" class="btn btn-red" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
             </div>
         </form>
     </div>
