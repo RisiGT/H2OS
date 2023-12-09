@@ -6,7 +6,7 @@
     justify-items: center;
 }
 
-.players a{
+.offers a{
     width: 250px;
     text-align: center;
     border: 1px solid #ccc;
@@ -21,16 +21,11 @@
     transition: box-shadow 0.2s;
 }
 
-.players img{
-    height: 250px;
-    max-width: 250px;
-}
-
-.players p{
+.offers p{
     text-align: center;
     margin: 10px;
 }
 
-.players a:hover{
+.offers a:hover{
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
 }
