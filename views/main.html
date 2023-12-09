@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Plantilla Triplano</title>
+    <title>Página principal</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,22 +25,22 @@
     </header>
 
     <section class="container">
-        <h2>Plantilla temporada 23/24</h2>
+        <h2>Ofertas de trabajo</h2>
 
-        <div class="players">
-            {{#players}}
-            <a href="ficha?id={{id}}">
-<img src="imagenes/players/{{photo}}" alt="{{name}}">
+        <div class="offers">
+            {{#offers}}
+            <a href="offer?id={{id}}">
                 <p>{{name}}</p>
-                </a>
-            {{/players}}
-            {{^players}}
-            <p>No hay jugadores fichados aún</p>
-            {{/players}}
+                <p>{{salary}}</p>
+            </a>
+            {{/offers}}
+            {{^offers}}
+            <p>No hay ofertas aún</p>
+            {{/offers}}
         </div>
 
         <div class="btn-cont">
-            <a href="formulario" class="btn" role="btn"><i class="bi bi-person-fill-add"></i> Inscribir nuevo jugador</a>
+            <a href="formulario" class="btn" role="btn"><i class="bi bi-person-fill-add"></i> Añadir oferta de trabajo</a>
         </div>
     </section>
 

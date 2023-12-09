@@ -5,9 +5,7 @@ import { Player, Subelement } from './defaultPlayers.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('plantilla', {
-        players: playerService.getPlayers(),
-    });
+    res.render('main');
 });
 
 router.get("/formulario", (req, res) => {
