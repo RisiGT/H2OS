@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Ficha de {{player.name}}</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Vina+Sans|Kanit" rel="stylesheet" type="text/css">
+
+    <link type="text/css" rel="stylesheet" href="base.css" />
+    <link type="text/css" rel="stylesheet" href="ficha.css" />
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="/">
+                <img id="header-img" src="imagenes/Escudo.jpeg" alt="Escudo del Triplano FC">
+            </a>
+        </div>
+        <div>
+            <a href="/" style="color: inherit; text-decoration: none">
+                <h1>Triplano FC</h1>
+            </a>
+        </div>
+    </header>
+
+    <div class="data">
+        <div class="container">
+            <h2>{{name}}</h2>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <img id="player-photo" src="imagenes/players/{{player.photo}}" alt="{{player.name}}">
+                </div>
+                <div class="col-md-8">
+                    <p><strong>Posición:</strong> {{player.position}}</p>
+                    <p><strong>Dorsal:</strong> {{player.number}}</p>
+                    <p><strong>Fecha de nacimiento:</strong> {{player.birth}}</p>
+                    <p><strong>Nacionalidad:</strong> {{player.nationality}}</p>
+                    <p><strong>Valor de mercado:</strong> {{player.marketValue}}</p>
+                    <p><strong>Descripción:</strong> {{player.description}}</p>
+                </div>
+            </div>
+
+            <div class="btn-cont">
+                <a href="/editar?id={{player.id}}" class="btn" role="button"><i class="bi bi-pencil"></i> Editar</a>
+                <a href="/borrar?id={{player.id}}" class="btn" role="button"><i class="bi bi-trash"></i> Eliminar</a>
+                <a href="/" class="btn" role="button"><i class="bi bi-box-arrow-left"></i> Volver</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <h2>Historial de equipos</h2>
+
+            <table class="table table-striped">
+                <thead class="tabhead">
+                    <tr>
+                        <th>Escudo</th>
+                        <th>Club</th>
+                        <th>Etapa</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#subelems}}
+                    <tr>
+                        <td>
+                            <img src="imagenes/teams/{{emblem}}" alt="{{club}}" class="tbl_img">
+                        </td>
+                        <td>{{club}}</td>
+                        <td>{{stage.start}}-{{stage.end}}</td>
+                    </tr>
+                    {{/subelems}}
+                    {{^subelems}}
+                    <tr><td></td><td>Sin equipos conocidos</td><td></td></tr>
+                    {{/subelems}}
+                </tbody>
+            </table>
+
+            <form role="form" action="subelementoCreado" method="post">
+                <div class="form-group">
+                    <label for="emblem">Escudo</label>
+                    <input type="file" class="form-control" name="emblem">
+                </div>
+
+                <div class="form-group">
+                    <label for="club">Club</label>
+                    <input type="text" class="form-control" name="club" placeholder="Nombre del equipo">
+                </div>
+
+                <div class="form-group row">
+                    <label for="stage">Etapa</label>
+                    <div class="col-sm-6 col-xs-12">
+                        <input type="number" class="form-control" name="start" placeholder="Primer año">
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <input type="number" class="form-control" name="end" placeholder="Último año">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="hidden" name="id" value="{{player.id}}">
+                </div>
+
+                <div class="btn-cont">
+                    <button type="submit" class="btn"><i class="bi bi-plus-lg"></i> Añadir nuevo equipo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
