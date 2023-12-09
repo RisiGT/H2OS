@@ -1,4 +1,4 @@
-import { addPlayer, getPlayer } from './playerService.js';
+import { addPlayer, getPlayer } from './offerService.js';
 
 export class Player {
      constructor(photo, name, position, number, birth, nationality, marketValue, description) {

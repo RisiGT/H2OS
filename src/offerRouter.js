@@ -1,6 +1,6 @@
 import express from 'express';
-import * as playerService from './playerService.js';
-import { Player, Subelement } from './defaultPlayers.js';
+import * as offerService from './offerService.js';
+import { Offer } from './defaultOffers.js';
 
 const router = express.Router();
 
@@ -21,10 +21,10 @@ router.post('/crear', (req, res) => {
         req.body.birthday,
         req.body.nationality,
         req.body.price,
-        req.body.description,
+        req.body.description
     )
 
-    if (playerService.correctValues(player)) { //si no ha habido ningún error, se crea el nuevo elemento(jugador)
+    if (playerService.correctValues(player)) {
         playerService.addPlayer(player);
         res.render('mensajes', {
             title: "Ficha creada",
@@ -35,7 +35,7 @@ router.post('/crear', (req, res) => {
 
 router.get('/ficha', (req, res) => {
     let id = parseInt(req.query.id);
-    let player = playerService.getPlayer(id);
+    let player = offerService.getPlayer(id);
     res.render('ficha', {
         player: player,
         name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),  // h2 muestra mal las tildes, así conseguimos quitarlas
@@ -45,9 +45,9 @@ router.get('/ficha', (req, res) => {
 
 router.get('/borrar', (req, res) => {
     let id = parseInt(req.query.id);
-    let name = playerService.getPlayer(id).name;
+    let name = offerService.getPlayer(id).name;
 
-    playerService.deletePlayer(id);
+    offerService.deletePlayer(id);
 
     res.render('mensajes', {
         title: "Ficha eliminada",
@@ -57,7 +57,7 @@ router.get('/borrar', (req, res) => {
 
 router.get('/editar', (req, res) => {
     let id = parseInt(req.query.id)
-    let player = playerService.getPlayer(id);
+    let player = offerService.getPlayer(id);
     res.render('formulario');
 });
 
@@ -73,10 +73,10 @@ router.post('/fichaEditada', (req, res) => {
         req.body.description,
     );
 
-    if (playerService.correctValues(newPlayer)) {
-        let player = playerService.getPlayer(parseInt(id));
+    if (offerService.correctValues(newPlayer)) {
+        let player = offerService.getPlayer(parseInt(id));
 
-        playerService.editPlayer(player, newPlayer);
+        offerService.editPlayer(player, newPlayer);
 
         res.render('mensajes', {
             title: "Ficha editada",
@@ -95,8 +95,8 @@ router.post("/subelementoCreado", (req, res) => {
 
     let id = parseInt(req.body.id);
 
-    if (playerService.correctSubvalues(sub)) {
-        let player = playerService.getPlayer(id);
+    if (offerService.correctSubvalues(sub)) {
+        let player = offerService.getPlayer(id);
 
         player.addSubelement(sub);
 
