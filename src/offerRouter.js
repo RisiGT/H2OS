@@ -32,13 +32,11 @@ router.post('/crear', (req, res) => {
     }
 });
 
-router.get('/ficha', (req, res) => {
+router.get('/oferta', (req, res) => {
     let id = parseInt(req.query.id);
-    let player = offerService.getPlayer(id);
-    res.render('ficha', {
-        player: player,
-        name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),  // h2 muestra mal las tildes, así conseguimos quitarlas
-        subelems: player.subelements
+    let offer = offerService.getOffer(id);
+    res.render('oferta', {
+        offer: offer
     });
 });
 
