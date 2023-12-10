@@ -5,7 +5,9 @@ import { Offer } from './defaultOffers.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('main');
+    res.render('main', {
+        offers: offerService.getOffers()
+    });
 });
 
 router.get("/formulario", (req, res) => {
