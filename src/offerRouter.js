@@ -15,22 +15,19 @@ router.get("/formulario", (req, res) => {
 });
 
 router.post('/crear', (req, res) => {
-    let player = new Player(
-        req.body.photo,
-        req.body.name,
-        req.body.position,
-        req.body.number,
-        req.body.birthday,
-        req.body.nationality,
-        req.body.price,
-        req.body.description
+    let offer = new Offer(
+        req.body.dir,
+        req.body.description,
+        req.body.type,
+        req.body.start,
+        req.body.salary
     )
 
-    if (playerService.correctValues(player)) {
-        playerService.addPlayer(player);
+    if (offerService.correctValues(offer)) {
+        offerService.addOffer(offer);
         res.render('mensajes', {
-            title: "Ficha creada",
-            message: "Jugador añadido correctamente"
+            title: "Oferta creada",
+            message: "Oferta añadida correctamente"
         });
     }
 });
