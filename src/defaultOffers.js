@@ -15,8 +15,8 @@ const defaultPlayers = [
           "Móstoles, C/Velázquez 2",
           "Buen trabajo en piscina comunitaria en medio de un barrio tranquilo de Móstoles",
           "Jornada completa",
-          "10 de Julio de 2024",
-          "1200"
+          "2024-07-03",
+          "1700"
      )
 ];
 

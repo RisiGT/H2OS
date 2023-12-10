@@ -36,8 +36,6 @@ export function correctValues(offer) {
     let salary = parseInt(offer.salary);
     let type = offer.type;
 
-    console.log(offer.birth)
-
     let correct = false;
 
     if (offer.dir == "" || offer.type == "" || offer.start == "" || offer.description == "") {
