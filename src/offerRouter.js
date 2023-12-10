@@ -42,13 +42,12 @@ router.get('/oferta', (req, res) => {
 
 router.get('/borrar', (req, res) => {
     let id = parseInt(req.query.id);
-    let name = offerService.getPlayer(id).name;
 
-    offerService.deletePlayer(id);
+    offerService.deleteOffer(id);
 
     res.render('mensajes', {
-        title: "Ficha eliminada",
-        message: "Ficha de " + name + " eliminada definitivamente"
+        title: "Oferta eliminada",
+        message: "Oferta eliminada definitivamente"
     });
 });
 
